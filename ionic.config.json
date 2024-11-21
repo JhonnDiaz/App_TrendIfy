@@ -1,0 +1,7 @@
+{
+  "name": "ProyectoDM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
