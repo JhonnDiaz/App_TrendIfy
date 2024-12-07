@@ -1,0 +1,87 @@
+<ion-content>
+  <ion-grid>
+    <!-- Sección de perfil -->
+    <ion-row class="ion-justify-content-center ion-padding">
+      <ion-col size="12" size-md="6" class="ion-text-center">
+        <div class="profile-img">
+          <ion-img 
+            src="https://i.pinimg.com/736x/34/d4/06/34d4064b9f3da6d386411db8e68a9504.jpg" 
+            alt="Imagen de perfil" 
+            class="profile-img-size">
+          </ion-img>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Información personal -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Información Personal</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label position="stacked">Nombre del Usuario</ion-label>
+                <ion-input [value]="user?.name" readonly disabled="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Correo Electrónico</ion-label>
+                <ion-input [value]="user?.email" readonly disabled="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Dirección</ion-label>
+                <ion-input [value]="user?.direccion" readonly disabled="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Teléfono</ion-label>
+                <ion-input [value]="user?.phone" readonly disabled="true"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Contraseña</ion-label>
+                <ion-input value="123644569787955" type="password" readonly disabled="true"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-button expand="block" color="danger" fill="outline"  (click)="EliminarCliente()"> <ion-icon name="trash-outline"></ion-icon>Eliminar perfil</ion-button>
+            <ion-button expand="block"  fill="outline"  (click)="logout()"> <ion-icon name="log-out-outline"></ion-icon>Cerrar sesion</ion-button>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Sección de productos comprados -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Productos Comprados</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let product of products">
+                <ion-label>
+                  <h3>{{ product.Producto_Nombre }}</h3>
+                  <p>Cantidad: {{ product.Cantidad }}</p>
+                  <p>Total: {{ product.Total | currency }}</p>
+                  <p>Estado: {{ product.Estado_Venta }}</p>
+                  <p>Fecha: {{product.Fecha_Venta}}</p>
+                </ion-label>
+                <ion-button 
+                  color="danger" 
+                  fill="outline" 
+                  slot="end" 
+                  (click)="cancelOrder(product.Producto_Nombre, product.Venta_ID)" *ngIf="product.Estado_Venta ==='Pendiente'; else Finalizada">
+                  Cancelar
+                </ion-button>
+               <ng-template #Finalizada><ion-icon name="shield-checkmark"></ion-icon></ng-template>
+               
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

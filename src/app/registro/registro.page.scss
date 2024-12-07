@@ -1,0 +1,27 @@
+
+*{
+  margin: 0.5rem;
+}
+.register-container {
+    text-align: center;
+    padding: 20px;
+  
+    .logo {
+      width: 150px;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 50%;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      color: #22c55e;
+    }
+  
+    p {
+      margin-bottom: 20px;
+      color: #6b7280;
+    }
+  }
+  

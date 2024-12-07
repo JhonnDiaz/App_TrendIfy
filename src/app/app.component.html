@@ -1,3 +1,45 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-menu side="end" contentId="main-content" (ionDidOpen)="onMenuOpen()" (ionDidClose)="onMenuClose()">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{ user?.name || 'Inicia Sesión o Regístrate' }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <!-- Contenido del menú -->
+    <ng-container *ngIf="user; else loggedOutMenu">
+      <ion-list>
+        <ion-item (click)="goToUserInfo()"><ion-icon name="people-circle-outline"></ion-icon>Mi Perfil</ion-item>
+        <ion-item (click)="logout()"> <ion-icon name="log-out-outline"></ion-icon>Cerrar Sesión</ion-item>
+      </ion-list>
+    </ng-container>
+    <ng-template #loggedOutMenu>
+      <ion-list>
+        <ion-item routerLink="/login" >Iniciar Sesión</ion-item>
+        <ion-item routerLink="/registro" (click)="isMenuOpen=false" >Registrarse</ion-item>
+      </ion-list>
+    </ng-template>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content" [class.inert]="isMenuOpen">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="center">{{ headerTitle }}</ion-title>
+      <ion-buttons slot="end">
+        <ng-container *ngIf="headerTitle === 'Bienvenido a TrendIfy'; else retro">
+          <ion-menu-button></ion-menu-button>
+        </ng-container>
+        <ng-template #retro>
+          <ion-buttons slot="end" routerLink="/home" class="btn" >HOME
+            <ion-icon name="chevron-forward-circle"></ion-icon>
+          </ion-buttons>
+        </ng-template>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-----contenido----->
+  <ion-content class="ion-padding">
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+</div>

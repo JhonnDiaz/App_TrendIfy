@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-loading [isOpen]="isLoading" message="Iniciando Sesión..." spinner="crescent" translucent="true">
+  </ion-loading>
+  <div class="login-container">
+    <img src="../../assets/icon/logo.webp" alt="Logo" class="logo" />
+    <h1>Bienvenido</h1>
+    <p>Por favor, ingresa tus credenciales para continuar.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Campo de Correo Electrónico -->
+      <ion-item>
+
+        <ion-input formControlName="email" type="email" label="Correo Electrónico" label-placement="floating"
+          fill="outline" placeholder="Correo Electrónico"></ion-input>
+      </ion-item>
+
+      <!-- Campo de Contraseña -->
+      <ion-item>
+
+        <ion-input type="password" formControlName="password" label="Contraseña" label-placement="floating"
+          fill="outline" placeholder="Ingresa tu contraseña"></ion-input>
+      </ion-item>
+      <!-- Botón de Iniciar Sesión -->
+      <ion-button expand="block" shape="round" color="primary" type="submit" [disabled]="loginForm.invalid">
+        Iniciar Sesión
+      </ion-button>
+    </form>
+
+    <!-- Enlace de registro -->
+    <ion-text color="medium">
+      <p>
+        ¿No tienes cuenta?
+        <ion-router-link routerLink="/registro">Regístrate
+          aquí</ion-router-link>
+      </p>
+    </ion-text>
+  </div>
+</ion-content>
